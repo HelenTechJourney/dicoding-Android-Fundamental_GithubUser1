@@ -18,7 +18,6 @@ import com.example.githubuser.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvGithub.layoutManager = layoutManager
         setContentView(binding.root)
 
-        viewModel.listUser.observe(this, { listUser -> setUserData(listUser) })
+        viewModel.listUser.observe(this) { listUser -> setUserData(listUser) }
         viewModel.isLoading.observe(this) {
             showLoading(it)
         }
@@ -49,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                val mainViewModel = null
                 viewModel.findUser(query)
                 searchView.clearFocus()
                 return true

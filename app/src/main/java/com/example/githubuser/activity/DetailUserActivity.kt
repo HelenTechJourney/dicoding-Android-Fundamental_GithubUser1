@@ -1,5 +1,6 @@
 package com.example.githubuser.activity
 
+import android.annotation.SuppressLint
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -48,7 +49,7 @@ class DetailUserActivity : AppCompatActivity() {
 
 //        viewModel.DetailViewModel().observe(this, { detailUser -> setDetailData(detailUser) })
 
-        viewModel.detailUser.observe(this, { userData -> setDetailData(userData) })
+        viewModel.detailUser.observe(this) { userData -> setDetailData(userData) }
         viewModel.isLoading.observe(this) { showLoading(it) }
 
             val sectionsPagerAdapter = SectionsPagerAdapter(this)
@@ -62,6 +63,7 @@ class DetailUserActivity : AppCompatActivity() {
             supportActionBar?.elevation = 0f
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setDetailData(detailUser: DetailUserResponse?) {
         binding.tvItemName.text = detailUser?.name
         binding.tvItemUsername.text = detailUser?.login
@@ -77,5 +79,10 @@ class DetailUserActivity : AppCompatActivity() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

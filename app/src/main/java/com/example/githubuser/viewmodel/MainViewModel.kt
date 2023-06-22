@@ -40,7 +40,9 @@ class MainViewModel : ViewModel(){
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
-            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+            override fun onFailure(
+                call: Call<SearchResponse>,
+                t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }

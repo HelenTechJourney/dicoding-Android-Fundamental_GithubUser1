@@ -10,7 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.githubuser.R
 import com.example.githubuser.response.ItemsItem
 
-class UserAdapter(private val listUser: List<ItemsItem>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+class UserAdapter(private val listUser: List<ItemsItem>) :
+    RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     private var onItemClickCallback: OnItemClickCallback?=null
 
